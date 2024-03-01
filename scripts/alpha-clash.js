@@ -23,5 +23,27 @@ function continueGame(){
 
     //set backgroundcolor
     setBackgroundColorById(alphabet);
-
 }
+
+//keyboard event & function
+function handleKeyboardButtonPress(event){
+    const playerPressed = event.key;
+    console.log('Player Pressed', playerPressed);
+
+    //get the expected to press
+    const currentAlphabetElement = document.getElementById('current-alphabet');
+    const currentAlphabet = currentAlphabetElement.innerText;
+    const expectedAlphabet = currentAlphabet.toLowerCase();
+    console.log(playerPressed, expectedAlphabet);
+
+    //check
+    if(playerPressed === expectedAlphabet){
+        removeBackgroundColorById(expectedAlphabet);
+        continueGame();
+    }
+    else{
+        console.log('Missed! You lost a life');
+    }
+}
+//capture key press
+document.addEventListener('keyup', handleKeyboardButtonPress);
